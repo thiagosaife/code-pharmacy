@@ -4,8 +4,8 @@ export const KATAKANA =
   "アカサタナハマヤラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユルグズヅブプ";
 
 export const HEADLINE_LINES: Array<{ word: string; accent: boolean }> = [
-  { word: "Full", accent: false },
-  { word: "Stack", accent: true },
+  { word: "Front", accent: false },
+  { word: "End", accent: true },
   { word: "Engineer", accent: false },
 ];
 
