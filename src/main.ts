@@ -9,6 +9,7 @@ import { initKanji } from "./presentation/kanji";
 import { initLens, triggerScan } from "./presentation/lens";
 import { initUplink } from "./presentation/uplink";
 import { initEgg } from "./presentation/egg";
+import { initAutoMode } from "./presentation/autoMode";
 
 modeStore.applyPalette();
 
@@ -22,4 +23,5 @@ initHoverScramble();
 runBoot().then(() => {
   applyModeEffect(modeStore.get());
   triggerScan();
+  initAutoMode();
 });
