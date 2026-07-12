@@ -246,11 +246,70 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 .toast[hidden] { display: none; }
 
 /* ============ responsive ============ */
+
+/* --- tablet: collapse the two hero/augment columns --- */
 @media (max-width: 1000px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-main { border-right: none; padding: 48px 32px; }
-  .panel, #contact { padding-left: 32px; padding-right: 32px; }
-  .panel-augment { grid-template-columns: 1fr; }
+  .hero-main { border-right: none; padding: 48px 40px; min-width: 0; overflow: hidden; }
+  .hero-side { border-top: 1px solid var(--line); min-width: 0; }
+  .panel, #contact { padding-left: 40px; padding-right: 40px; }
+  .panel-augment { grid-template-columns: 1fr; gap: 32px; padding-left: 40px; padding-right: 40px; }
+  .workrow { grid-template-columns: 120px 1fr auto; gap: 18px; }
+}
+
+/* --- phone: compact header, stacked rows, wrapping CTAs --- */
+@media (max-width: 640px) {
+  /* boot overlay */
+  .boot { padding: 28px 22px; }
+  .boot-line, .boot-cursor { font-size: 11px; letter-spacing: 0.04em; }
+  .boot-skip { margin-left: 12px; }
+
+  /* header: name on top, nav as a full-width second row */
+  .site-header { flex-wrap: wrap; }
+  .logo { padding: 12px 20px 12px 16px; font-size: 15px; }
+  .logo-sub { display: none; }
+  .site-nav { width: 100%; margin-left: 0; border-top: 1px solid var(--line); }
+  .site-nav a { flex: 1; justify-content: center; padding: 12px 0; font-size: 12px; letter-spacing: 0.15em; border-left: 1px solid var(--line); }
+  .site-nav a:first-child { border-left: none; }
+  .panel { scroll-margin-top: 104px; }
+
+  /* hero */
+  .hero-main { padding: 40px 22px; }
+  .sys-line { font-size: 10px; letter-spacing: 0.15em; gap: 8px; margin-bottom: 18px; }
+  .headline { font-size: clamp(28px, 9.2vw, 60px); }
+  .intro { font-size: 12px; margin-top: 22px; line-height: 1.65; }
+  .cta-row { flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .portrait { margin: 20px; min-height: 340px; }
+
+  /* panels */
+  .panel, #contact { padding: 32px 22px; }
+  .panel-augment { padding: 36px 22px; }
+  .panel-head { flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .classified { margin-left: 0; }
+  .chip { font-size: 11px; letter-spacing: 0.18em; }
+
+  /* work log rows: date on its own line, main + loc below */
+  .workrow { grid-template-columns: 1fr auto; gap: 4px 14px; padding: 14px 0; }
+  .w-date { grid-column: 1 / -1; }
+  .w-main { font-size: 15px; min-width: 0; }
+
+  /* augmentation: stack the human/ai boxes with a short connector */
+  .aug-diagram { flex-direction: column; align-items: stretch; gap: 14px; }
+  .aug-link { width: 40px; align-self: center; }
+
+  /* uplink */
+  #uplink-input { min-width: 0; }
+  #uplink-send { padding: 0 18px; }
+  .uplink-sent, .uplink-loading { flex-wrap: wrap; }
+
+  /* footer: single column */
   .site-footer { grid-template-columns: 1fr; }
-  .workrow { grid-template-columns: 110px 1fr auto; }
+  .site-footer a { border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* --- small phone: shrink chrome further, full-width CTAs --- */
+@media (max-width: 380px) {
+  .logo { font-size: 13px; }
+  .headline { font-size: clamp(26px, 9vw, 52px); }
+  .cta { width: 100%; justify-content: center; }
 }
