@@ -7,6 +7,7 @@ export const HEADLINE_LINES: Array<{ word: string; accent: boolean }> = [
   { word: "Front", accent: false },
   { word: "End", accent: true },
   { word: "Engineer", accent: false },
+  { word: "Architect", accent: true },
 ];
 
 export const BOOT_LINES: Array<{ t: string; s: string }> = [
