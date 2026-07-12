@@ -49,6 +49,20 @@ export function initUplink(): void {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") void doSend();
   });
+
+  // Any link pointing at #contact focuses the terminal input once the scroll lands.
+  // preventScroll keeps the native anchor scroll from being hijacked by the focus.
+  const focusInput = (): void => {
+    if (form.hidden) return;
+    input.focus({ preventScroll: true });
+  };
+
+  document.querySelectorAll<HTMLAnchorElement>('a[href="#contact"]').forEach((link) => {
+    if (link === reset) return;
+    link.addEventListener("click", () => {
+      window.setTimeout(focusInput, 600);
+    });
+  });
   reset.addEventListener("click", (e) => {
     e.preventDefault();
     input.value = "";
