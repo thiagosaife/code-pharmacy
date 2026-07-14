@@ -2,6 +2,7 @@
 
 import { CODE_FRAGMENTS, DRIFT_SHAPES } from "../domain/content";
 import { DRIFT_COLORS, DRIFT_HUES, Mode } from "../domain/mode";
+import { flagStore } from "../application/flagStore";
 import { modeStore } from "../application/modeStore";
 
 /** Deterministic pseudo-random so layout is stable across rebuilds. */
@@ -58,6 +59,15 @@ function build(layer: HTMLElement, mode: Mode): void {
 }
 
 export function initDrift(layer: HTMLElement): void {
-  build(layer, modeStore.get());
-  modeStore.subscribe((mode) => build(layer, mode));
+  const render = (): void => {
+    if (!flagStore.get("drift")) {
+      layer.innerHTML = "";
+      return;
+    }
+    build(layer, modeStore.get());
+  };
+
+  render();
+  modeStore.subscribe(render);
+  flagStore.subscribe("drift", render);
 }

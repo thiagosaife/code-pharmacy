@@ -26,8 +26,10 @@ src/
   domain/                 pure data + types, NO DOM access
     content.ts            katakana, headline words, boot lines, drift shapes + code fragments
     mode.ts
+    flags.ts              feature-flag names + defaults
   application/
     modeStore.ts          palette / mode state
+    flagStore.ts          feature-flag state, URL + localStorage overrides
   presentation/           all DOM code lives here, one module per feature
     boot.ts  headline.ts  scramble.ts  drift.ts  lens.ts  uplink.ts  egg.ts
   style.css
@@ -40,6 +42,29 @@ src/
 - `html { scroll-behavior: smooth }` — anything that focuses an element after an
   anchor jump must delay (~600ms) and use `focus({ preventScroll: true })`, or it
   kills the smooth scroll. See the `#contact` handler in `uplink.ts`.
+
+## Feature flags
+
+Defaults live in `domain/flags.ts`; `application/flagStore.ts` resolves them.
+Resolution order: **`?name=on` query param > persisted localStorage value >
+default**. The query param is a session-only preview and is *not* written to
+storage; only `flags.set()` / `flags.toggle()` persist (key `code-pharmacy.flags`).
+
+`main.ts` exposes the store on `window.flags` for console use. Features subscribe
+(`flagStore.subscribe(name, fn)`) so a toggle re-renders live, no reload:
+
+```js
+flags.toggle("drift")        // console, live
+flags.set("drift", true)     // console, persists across reloads
+// ?drift=on                 // URL, this session only
+```
+
+| flag    | default | what it does                                                    |
+| ------- | ------- | --------------------------------------------------------------- |
+| `drift` | `off`   | drifting background layer — wireframe forms + TS code fragments |
+
+To add one: add the key + default to `Flags` / `DEFAULT_FLAGS`, then have the
+feature read `flagStore.get(name)` and subscribe. See `presentation/drift.ts`.
 
 ## Deployment — READ THIS FIRST
 
