@@ -317,8 +317,8 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
   .aug-diagram { flex-direction: column; align-items: stretch; gap: 14px; }
   .aug-link { width: 40px; align-self: center; }
 
-  /* uplink */
-  #uplink-input { min-width: 0; }
+  /* uplink — 16px or iOS Safari zooms the viewport on focus and never zooms back */
+  #uplink-input { min-width: 0; font-size: 16px; }
   #uplink-send { padding: 0 18px; }
   .uplink-sent, .uplink-loading { flex-wrap: wrap; }
 
