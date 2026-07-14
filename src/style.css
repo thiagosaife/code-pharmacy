@@ -190,6 +190,19 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 .w-main strong { color: var(--accent1); }
 .w-loc { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.15em; }
 
+/* ============ toolchain ============ */
+.toolgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.tool {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 24px 12px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  color: var(--dim); transition: color 0.25s, background 0.25s;
+}
+.tool:hover { color: var(--ink); background: color-mix(in srgb, var(--accent1) 5%, transparent); }
+.tool-ico { width: 26px; height: 26px; opacity: 0.55; transition: opacity 0.25s, transform 0.25s; }
+.tool:hover .tool-ico { opacity: 1; color: var(--accent1); transform: translateY(-2px); }
+.tool-name { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--ink); }
+.tool-kind { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--dim); }
+
 /* ============ augmentation ============ */
 .panel-augment {
   border-top-color: var(--accent2); padding: 44px 72px;
@@ -229,7 +242,7 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 #uplink-reset:hover { color: var(--accent2); border-bottom-color: var(--accent2); }
 
 /* ============ footer ============ */
-.site-footer { border-top: 2px solid var(--accent1); display: grid; grid-template-columns: repeat(3, 1fr); position: relative; z-index: 10; }
+.site-footer { border-top: 2px solid var(--accent1); display: grid; grid-template-columns: repeat(4, 1fr); position: relative; z-index: 10; }
 .site-footer a { padding: 24px 28px; border-right: 1px solid var(--line); display: block; color: var(--ink); }
 .site-footer a:hover { background: var(--accent1); color: var(--bg); }
 .f-num { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.25em; opacity: 0.6; }
@@ -255,6 +268,8 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
   .panel, #contact { padding-left: 40px; padding-right: 40px; }
   .panel-augment { grid-template-columns: 1fr; gap: 32px; padding-left: 40px; padding-right: 40px; }
   .workrow { grid-template-columns: 120px 1fr auto; gap: 18px; }
+  .toolgrid { grid-template-columns: repeat(3, 1fr); }
+  .site-footer { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* --- phone: compact header, stacked rows, wrapping CTAs --- */
@@ -293,6 +308,10 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
   .w-date { grid-column: 1 / -1; }
   .w-main { font-size: 15px; min-width: 0; }
 
+  /* toolchain: two per row */
+  .toolgrid { grid-template-columns: repeat(2, 1fr); }
+  .tool { padding: 20px 10px 16px; }
+
   /* augmentation: stack the human/ai boxes with a short connector */
   .aug-diagram { flex-direction: column; align-items: stretch; gap: 14px; }
   .aug-link { width: 40px; align-self: center; }
@@ -310,6 +329,7 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 /* --- small phone: shrink chrome further, full-width CTAs --- */
 @media (max-width: 380px) {
   .logo { font-size: 13px; }
+  .site-nav a { font-size: 11px; letter-spacing: 0.08em; }
   .headline { font-size: clamp(26px, 9vw, 52px); }
   .cta { width: 100%; justify-content: center; }
 }
