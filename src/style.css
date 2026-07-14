@@ -26,8 +26,8 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 /* ============ keyframes ============ */
 @keyframes scanmove { 0% { background-position: 0 0; } 100% { background-position: 0 8px; } }
 @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-@keyframes kanjidrift { 0% { transform: translate(0, 0); } 100% { transform: translate(var(--dx, 0px), var(--dy, -46px)); } }
-@keyframes kanjifade { 0%, 100% { opacity: 0; } 35%, 65% { opacity: var(--maxop, 0.1); } }
+@keyframes driftmove { 0% { transform: translate(0, 0); } 100% { transform: translate(var(--dx, 0px), var(--dy, -46px)); } }
+@keyframes driftfade { 0%, 100% { opacity: 0; } 35%, 65% { opacity: var(--maxop, 0.1); } }
 @keyframes scansweep { 0% { top: -4%; } 100% { top: 104%; } }
 @keyframes rgbglitch {
   0%, 100% { transform: none; filter: none; }
@@ -81,8 +81,10 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 .bg-schematic, .bg-seams { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; color: var(--accent2); }
 .stroke-a1 { stroke: var(--accent1); }
 .stamp { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 3px; fill: #6b6858; opacity: 0.8; }
-.kanji-layer { position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
-.kanji-layer span { position: absolute; line-height: 1; font-weight: 700; opacity: 0; }
+.drift-layer { position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.drift-layer > * { position: absolute; opacity: 0; }
+.drift-code { margin: 0; font-family: "JetBrains Mono", monospace; line-height: 1.5; white-space: pre; }
+.drift-shape svg { display: block; width: 100%; height: auto; }
 
 /* ============ header ============ */
 .site-header {
@@ -191,7 +193,7 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 .w-loc { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.15em; }
 
 /* ============ toolchain ============ */
-.toolgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.toolgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .tool {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
   padding: 24px 12px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -268,7 +270,6 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
   .panel, #contact { padding-left: 40px; padding-right: 40px; }
   .panel-augment { grid-template-columns: 1fr; gap: 32px; padding-left: 40px; padding-right: 40px; }
   .workrow { grid-template-columns: 120px 1fr auto; gap: 18px; }
-  .toolgrid { grid-template-columns: repeat(3, 1fr); }
   .site-footer { grid-template-columns: repeat(2, 1fr); }
 }
 

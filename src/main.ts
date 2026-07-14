@@ -5,7 +5,7 @@ import { modeStore } from "./application/modeStore";
 import { runBoot } from "./presentation/boot";
 import { initHeadline, applyModeEffect } from "./presentation/headline";
 import { initHoverScramble } from "./presentation/scramble";
-import { initKanji } from "./presentation/kanji";
+import { initDrift } from "./presentation/drift";
 import { initLens, triggerScan } from "./presentation/lens";
 import { initUplink } from "./presentation/uplink";
 import { initEgg } from "./presentation/egg";
@@ -14,7 +14,7 @@ import { initAutoMode } from "./presentation/autoMode";
 modeStore.applyPalette();
 
 initHeadline(document.getElementById("headline")!);
-initKanji(document.getElementById("kanji")!);
+initDrift(document.getElementById("drift")!);
 initLens();
 initUplink();
 initEgg();

@@ -24,12 +24,12 @@ Layered, DOM-free domain. Keep it that way.
 src/
   main.ts                 composition root — wires everything, runs boot sequence
   domain/                 pure data + types, NO DOM access
-    content.ts            katakana, headline words, boot lines, kanji glyphs
+    content.ts            katakana, headline words, boot lines, drift shapes + code fragments
     mode.ts
   application/
     modeStore.ts          palette / mode state
   presentation/           all DOM code lives here, one module per feature
-    boot.ts  headline.ts  scramble.ts  kanji.ts  lens.ts  uplink.ts  egg.ts
+    boot.ts  headline.ts  scramble.ts  drift.ts  lens.ts  uplink.ts  egg.ts
   style.css
 ```
 
