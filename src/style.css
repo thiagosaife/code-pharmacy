@@ -205,6 +205,21 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 .tool-name { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--ink); }
 .tool-kind { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--dim); }
 
+/* ============ shipped / builds ============ */
+.buildgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 360px)); justify-content: start; gap: 18px; border-top: 1px solid var(--line); padding-top: 26px; }
+.buildcard {
+  position: relative; display: grid; gap: 8px; padding: 24px 26px 22px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+}
+.buildcard:hover { border-color: var(--accent1); background: color-mix(in srgb, var(--accent1) 5%, transparent); transform: translateY(-2px); }
+.build-idx { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--accent2); }
+.build-name { font-family: "Archivo Black", sans-serif; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase; }
+.buildcard:hover .build-name { color: var(--accent1); }
+.build-desc { font-family: "JetBrains Mono", monospace; font-size: 12px; line-height: 1.6; color: var(--dim); }
+.build-host { display: flex; align-items: center; gap: 8px; margin-top: 4px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent2); }
+.buildcard:hover .build-host { color: var(--accent1); }
+
 /* ============ augmentation ============ */
 .panel-augment {
   border-top-color: var(--accent2); padding: 44px 72px;
@@ -244,7 +259,7 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 #uplink-reset:hover { color: var(--accent2); border-bottom-color: var(--accent2); }
 
 /* ============ footer ============ */
-.site-footer { border-top: 2px solid var(--accent1); display: grid; grid-template-columns: repeat(4, 1fr); position: relative; z-index: 10; }
+.site-footer { border-top: 2px solid var(--accent1); display: grid; grid-template-columns: repeat(5, 1fr); position: relative; z-index: 10; }
 .site-footer a { padding: 24px 28px; border-right: 1px solid var(--line); display: block; color: var(--ink); }
 .site-footer a:hover { background: var(--accent1); color: var(--bg); }
 .f-num { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.25em; opacity: 0.6; }
@@ -265,6 +280,8 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
 /* --- tablet: collapse the two hero/augment columns --- */
 @media (max-width: 1000px) {
   .hero { grid-template-columns: 1fr; }
+  /* nav gained a 5th item (SHIPPED) — tighten padding so the row fits above the 640 wrap */
+  .site-nav a { padding: 0 14px; }
   .hero-main { border-right: none; padding: 48px 40px; min-width: 0; overflow: hidden; }
   .hero-side { border-top: 1px solid var(--line); min-width: 0; }
   .panel, #contact { padding-left: 40px; padding-right: 40px; }
@@ -312,6 +329,9 @@ a[data-hover-dark]:hover, a[data-hover-dark]:hover * { color: var(--bg) !importa
   /* toolchain: two per row */
   .toolgrid { grid-template-columns: repeat(2, 1fr); }
   .tool { padding: 20px 10px 16px; }
+
+  /* shipped: one card per row */
+  .buildgrid { grid-template-columns: 1fr; }
 
   /* augmentation: stack the human/ai boxes with a short connector */
   .aug-diagram { flex-direction: column; align-items: stretch; gap: 14px; }
